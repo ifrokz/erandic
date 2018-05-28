@@ -1,64 +1,41 @@
 import '../components/styles/style.scss';
-import {connect} from 'react-redux'
-import {startClock, serverRenderClock} from '../redux/store'
+import {connect} from 'react-redux';
 
-const isClientOrServer = () => {
-  return (typeof window !== 'undefined' && window.document) ? 'client' : 'server';
-};
-
-// const Index = ({userAgent, params, query}) => {
-//   console.log(params);return(
-//   <div>
-//     <h1>Hello world from Next JS {isClientOrServer()}</h1>
-//     <div>
-//       <p>{userAgent}</p>
-//       <p>{JSON.stringify(params)}</p>
-//       <p>{JSON.stringify(query)}</p>
-//     </div>
-//   </div>
-// )};
-
-// Index.getInitialProps = async ({req}) => {
-//   const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-//   console.log('body:', req.query, req.query, req.params);
-//   return { userAgent, params: req.params, query: req.query }
-// }
+import {selectLanguage} from './../redux/actions/language';
 
 class Index extends React.Component {
   static getInitialProps = async ({reduxStore, req}) => {
-    const isServer = !!req
-    reduxStore.dispatch(serverRenderClock(isServer))
+    const isServer = !!req;
 
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
     console.log('body:', req.query, req.query, req.params);
     return { userAgent, params: req.params, query: req.query }
   }
-
-  componentDidMount () {
-    const {dispatch} = this.props
-    this.timer = startClock(dispatch)
+  componentWillMount(){
+    const {dispatch} = this.props;
+    dispatch(selectLanguage('ES'));
   }
-
-  componentWillUnmount () {
-    clearInterval(this.timer)
-  }
+  isClientOrServer = () => {
+    return (typeof window !== 'undefined' && window.document) ? 'client' : 'server';
+  };
 
   render = () => (
     <div>
-      <h1>Hello world from Next JS {isClientOrServer()}</h1>
+      <h1>Hello world from Next JS {this.isClientOrServer()}</h1>
       <div>
         <p>{`userAgent => ${this.props.userAgent}`}</p>
         <p>{`Params => ${JSON.stringify(this.props.params)}`}</p>
-        <p>{`Query => ${JSON.stringify(this.props.query)}`}</p>
-        <p>{this.props.lastUpdate}</p>
+        <p>{`Query => ${JSON.stringify(this.props.query)}`}</p>\
+        <p>{JSON.stringify(this.props.lang)}</p>
       </div>
     </div>
   );
 };
+
 function mapStateToProps (state) {
-  console.log(state)
-  const {lastUpdate} = state
-  return {lastUpdate}
-}
+  const lang = state.language;
+  return {lang};
+};
+
 export default connect(mapStateToProps)(Index)
 // export  default Index;
