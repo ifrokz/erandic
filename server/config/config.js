@@ -2,7 +2,7 @@
 
 
 var env = process.env.NODE_ENV || 'development' ;
-process.env.NODE_ENV =  env;
+// process.env.NODE_ENV =  env;
 console.log('process.env.NODE_ENV ', process.env.NODE_ENV )
 
 if(env === 'development' || env === 'test' || env === 'test_cloud' || env === 'production'){
