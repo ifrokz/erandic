@@ -1,0 +1,22 @@
+{
+    "test": {
+        "port": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/BLANKTest",
+        "JWT_SECRET": "saltJWT"
+    },
+    "test_cloud": {
+        "port": 3000,
+        "MONGODB_URI": "mongodb+srv://admin:12345@cluster0-aysvh.mongodb.net/test",
+        "JWT_SECRET": "saltJWT"
+    },
+    "development": {
+        "port": 3000,
+        "MONGODB_URI": "mongodb://localhost:27017/BLANK",
+        "JWT_SECRET": "saltJWT"
+    },
+    "production": {
+        "port": 3000,
+        "MONGODB_URI": "mongodb+srv://admin:12345@cluster0-aysvh.mongodb.net/test",
+        "JWT_SECRET": "saltJWT"
+    }
+}

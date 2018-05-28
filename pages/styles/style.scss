@@ -1,0 +1,10 @@
+@import './_vars.scss';
+
+nav {
+  padding: 10px;
+
+  a {
+    text-decoration: none;
+    color: $green;
+  }
+}
