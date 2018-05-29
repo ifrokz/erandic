@@ -32,7 +32,7 @@ const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
   server.get('/:lang(es|en)', (req, res) => {
-    console.log('/', req.query, req.params);
+    console.log('Server: /', req.query, req.params);
     return app.render(req, res, '/', req.query)
   });
 

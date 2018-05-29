@@ -5,8 +5,12 @@ import thunkMiddleware from 'redux-thunk'
 import {languageReducer} from './reducers/language';
 
 const exampleInitialState = {
-  language: { selected: 'EN'}
-}
+  language: { selected: 'es'}
+};
+
+const isClient = () => {
+  return (typeof window !== 'undefined' && window.document) ? 'client' : 'server';
+};
 
 export const reducer = (state = exampleInitialState, action) => {
   switch (action.type) {
@@ -16,10 +20,11 @@ export const reducer = (state = exampleInitialState, action) => {
 }
 
 export function initializeStore (initialState = exampleInitialState) {
-  // console.log('iniciando store:', initialState);
+  //console.log('iniciando store:', initialState);
   const store = createStore(
     combineReducers({
-      language: languageReducer
+      language: languageReducer,
+      isClient: isClient()
     }), 
     initialState, 
     composeWithDevTools(applyMiddleware(thunkMiddleware))
