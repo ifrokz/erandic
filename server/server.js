@@ -14,7 +14,7 @@ server.use(require('./routes/api/user/user'));
 server.use(require('./routes/api/user/user-phone'));
 server.use(require('./routes/api/user/user-address'));
 
-server.listen(process.env.PORT, (err) => {
+server.listen(process.env.PORT || 3000, (err) => {
   if(err) throw err;
   console.log(`Started on port ${process.env.PORT}`);
 });
