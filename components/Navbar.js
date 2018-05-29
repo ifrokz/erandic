@@ -52,10 +52,14 @@ Nav.prototype.setActiveNavLink = (that) => {
   const links = that.createNavLinks(that.props.language.selected);
   console.log(links);
   links.map(({id, href}) => {
-    if(href){
-
+    if(href === location.pathname)
+      $(`a#${id}`).addClass('active');
+    else {
+      if(location.pathname === '/' || location.pathname === `/${that.props.language.selected}`)
+        $(`a#${links[0].id}`).addClass('active'); 
+      else 
+      $(`a#${id}`).removeClass('active');
     }
-    $(`a#${id}`).removeClass('active')
   });
   // $(`a#${id}`).addClass('active');
 }
