@@ -1,5 +1,15 @@
 {
   "name": "create-next-example-app",
+  "description": "Erandic page (Next + React + Express)",
+  "version": "1.0.0",
+  "license": "MIT",
+  "main": "server.js",
+  "author": {
+    "name": "Ivan"
+  },
+  "engines": {
+    "node": "9.11.1"
+  },
   "scripts": {
     "next_dev": "next",
     "next_build": "next build",
