@@ -6,7 +6,7 @@ import Nav from '../components/Navbar';
 
 class Services extends React.Component {
   static getInitialProps = async ({reduxStore, req}) => {
-    reduxStore.dispatch(selectLanguage(req.params.language));
+    // reduxStore.dispatch(selectLanguage(req.params.language));
     return { params: req.params , query: req.query}
   }
 

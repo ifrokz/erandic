@@ -9,7 +9,7 @@ class Index extends React.Component {
     const isServer = !!req;
 
     const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
-    reduxStore.dispatch(selectLanguage(req.params.language));
+    // reduxStore.dispatch(selectLanguage(req.params.language));
     return { userAgent, params: req.params , query: req.query}
   }
 
