@@ -16,7 +16,7 @@ class Nav extends React.Component {
 
   render = () => this.debug ? (<div>Debugging</div>) : (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <Link prefetch href={`/${this.props.language.selected}/?minPrice=100&maxPrice=250`}>
+      <Link href={`/${this.props.language.selected}/?minPrice=100&maxPrice=250`}>
         <a className='navbar-brand'>
           <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
           {`{Bootstrapñ}`}
@@ -42,7 +42,7 @@ class Nav extends React.Component {
 
 Nav.prototype.images = {
   brandImage: { 
-    valueOf: () => '../static/favicon.ico',
+    valueOf: () => '/static/favicon.ico',
     getLink: this.valueOf,
     alt: 'brand-image'
   }
@@ -50,7 +50,6 @@ Nav.prototype.images = {
 
 Nav.prototype.setActiveNavLink = (that) => {
   const links = that.createNavLinks(that.props.language.selected);
-  console.log(links);
   links.map(({id, href}) => {
     if(href === location.pathname)
       $(`a#${id}`).addClass('active');
@@ -65,14 +64,12 @@ Nav.prototype.setActiveNavLink = (that) => {
 }
 
 Nav.prototype.createNavLinks = (language) => {
-  
   const linksArr = [
     { href: `/${language}/`, label: 'Home'},
     { href: `/${language}/about`, label: 'About'},
     { href: `/${language}/services`, label: 'Services'},
-    { href: `/${language}/projects`, label: 'Projects'},
-    { href: `/${language}/clients`, label: 'Clients'},
-    { href: `/${language}/`, label: 'Contact'}
+    { href: `/${language}/portfolio`, label: 'Portfolio'},
+    { href: `/${language}/contact`, label: 'Contact'}
   ];
 
   const links = linksArr.map(link => {

@@ -1,4 +1,3 @@
-import '../components/styles/style.scss';
 import {connect} from 'react-redux';
 import Head from 'next/head';
 
@@ -9,18 +8,10 @@ class Index extends React.Component {
   static getInitialProps = async ({reduxStore, req}) => {
     const isServer = !!req;
 
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent
-    //console.log('body:', red.query, req.params);
-    console.log('Params:', (req.params || undefined))
+    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    reduxStore.dispatch(selectLanguage(req.params.language));
     return { userAgent, params: req.params , query: req.query}
-    console.log('Req:', req.query)
-    return {}
   }
-
-  // componentWillMount(){
-  //   const {dispatch} = this.props;
-  //   dispatch(selectLanguage('ES'));
-  // }
 
   isClientOrServer = () => {
     return (typeof window !== 'undefined' && window.document) ? 'client' : 'server';
@@ -50,5 +41,5 @@ function mapStateToProps (state) {
   return {language: lang};
 };
 
-export default connect(mapStateToProps)(Index)
-// export  default Index;
+export default connect(mapStateToProps)(Index);
+

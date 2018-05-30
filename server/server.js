@@ -31,12 +31,27 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 app.prepare().then(() => {
-  server.get('/:lang(es|en)', (req, res) => {
-    console.log('Server: /', req.query, req.params);
-    return app.render(req, res, '/', req.query)
+  server.get(['/:language(es|en)/home/', '/:language(es|en)/inicio/', '/:language(es|en)/'], (req, res, next) => {
+    app.render(req, res, '/index', req.query);
+  });
+
+  server.get('/:language(es|en)/about', (req, res, next) => {
+    app.render(req, res, '/about', req.query);
+  });
+
+  server.get('/:language(es|en)/services', (req, res, next) => {
+    app.render(req, res, '/services', req.query);
+  });
+
+  server.get('/:language(es|en)/contact', (req, res, next) => {
+    app.render(req, res, '/contact', req.query);
+  });
+
+  server.get('/:language(es|en)/portfolio', (req, res, next) => {
+    app.render(req, res, '/portfolio', req.query);
   });
 
   server.get('*', (req, res) => {
-    return handle(req, res)
+    handle(req, res);
   });
 });
