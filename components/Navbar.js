@@ -8,7 +8,7 @@ import {selectLanguage} from '../redux/actions/language';
 class Nav extends React.Component {
   constructor(props){
     super(props);
-    props.selectLanguage('narniano');
+    //props.selectLanguage('narniano');
   }
   
   componentDidMount = () => {
