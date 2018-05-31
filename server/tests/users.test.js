@@ -6,7 +6,7 @@ const {ObjectID} = require('mongodb');
 const _ = require('lodash');
 
 const {User} = require('./../db/models/user.js');
-const {server} = require('./../server.js');
+const {server} = require('./../server-api.js');
 const {populateUsers, users, personalData} = require('./seed/user_seed.js');
 
 beforeEach(populateUsers);

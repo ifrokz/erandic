@@ -5,7 +5,7 @@ const request = require('supertest');
 const {ObjectID} = require('mongodb');
 const {pick} = require('lodash');
 
-const {server} = require('./../server.js');
+const {server} = require('./../server-api.js');
 const {populateAddresses, addressData, Address, users} = require('./seed/address_seed');
 
 beforeEach(populateAddresses);
