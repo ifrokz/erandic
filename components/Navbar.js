@@ -21,7 +21,7 @@ class Nav extends React.Component {
         <Link {...Router.linkPage('index', {lang: this.props.language.selected})}>
           <a className='navbar-brand'>
             <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
-            {`{Title}Ñáâºª`}
+            {`{Title}`}
           </a>
         </Link>
         {` [Language: ${this.props.language.selected}]`}
