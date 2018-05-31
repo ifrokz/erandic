@@ -5,8 +5,18 @@ import {selectLanguage} from './../redux/actions/language';
 import Nav from '../components/Navbar';
 
 class Portfolio extends React.Component {
-  static getInitialProps = async ({reduxStore, req}) => {
-    return { }
+  static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
+    const isServer = !!req;
+    
+    const request = {
+      params: isServer ? req.params : undefined,
+      query: isServer ? req.query : undefined
+    }
+
+    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+
+    reduxStore.dispatch(selectLanguage(lang));
+    return {req: request, lang: lang}
   }
 
   render () {
@@ -22,4 +32,9 @@ class Portfolio extends React.Component {
   };
 };
 
-export default connect()(Portfolio);
+function mapStateToProps (state) {
+  const lang = state.language;
+  return {store: {language: lang}};
+};
+
+export default connect(mapStateToProps)(Portfolio);

@@ -15,10 +15,10 @@ class Index extends React.Component {
       query: isServer ? req.query : undefined
     }
 
-    const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
 
     reduxStore.dispatch(selectLanguage(lang));
-    return { userAgent, req: request, lang: lang}
+    return {req: request, lang: lang}
   }
 
   isClientOrServer = () => {
@@ -50,10 +50,9 @@ class Index extends React.Component {
         <h1>Hello world from Next JS {lang} {this.isClientOrServer()}</h1>
 
         <div>
-          <p>{`userAgent => ${this.props.userAgent}`}</p>
           <p>{`Params => ${JSON.stringify(this.props.req.params)}`}</p>
           <p>{`Query => ${JSON.stringify(this.props.req.query)}`}</p>
-          <p>{`Store=> ${JSON.stringify(this.props.store)}`}</p>
+          <p>{`Store=> ${JSON.stringify(this.props.store, null, 2)}`}</p>
         </div>
       </div>
     )

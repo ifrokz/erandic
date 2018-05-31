@@ -4,6 +4,7 @@ import Link from 'next/link';
 import './styles/Navbar.scss';
 import $ from 'jquery';
 import {selectLanguage} from '../redux/actions/language';
+import {Router} from '../server/next-routes';
 
 class Nav extends React.Component {
   constructor(props){
@@ -17,24 +18,27 @@ class Nav extends React.Component {
   render = () => {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link href={`/${this.props.language.selected}/?minPrice=100&maxPrice=250`}>
+        <Link {...Router.linkPage('index', {lang: this.props.language.selected})}>
           <a className='navbar-brand'>
             <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
-            {`{Bootstrapñá}`}
+            {`{Title}Ñáâºª`}
           </a>
         </Link>
+        {` [Language: ${this.props.language.selected}]`}
         <button className='navbar-toggler' type='button' data-toggle='collapse' data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse mr-auto justify-content-around" id="navbarNavAltMarkup">
           <div className="navbar-nav ">
-            {this.createNavLinks(this.props.language.selected).map(
-              ({ href, key, label, id }) => (
-                <Link href={href}  key={key}>
-                  <a className='nav-item nav-link' id={id}>{label}</a>
-                </Link>
-              )
-            )}
+            {
+              this.createNavLinks(this.props.language.selected).linksArr.map(link => {
+                return (
+                  <Link {...Router.linkPage(link.page, {lang: this.props.language.selected})} key={link.key}>
+                    <a className='nav-item nav-link' id={link.id}>{link.text[this.props.language.selected]}</a>
+                  </Link>
+                );
+              })
+            }
           </div>
         </div>
       </nav>
@@ -51,35 +55,57 @@ Nav.prototype.images = {
 };
 
 Nav.prototype.setActiveNavLink = (that) => {
-  const links = that.createNavLinks(that.props.language.selected);
-  links.map(({id, href}) => {
-    if(href === location.pathname)
-      $(`a#${id}`).addClass('active');
-    else {
-      if(location.pathname === '/' || location.pathname === `/${that.props.language.selected}`)
-        $(`a#${links[0].id}`).addClass('active'); 
-      else 
-      $(`a#${id}`).removeClass('active');
-    }
-  });
-  // $(`a#${id}`).addClass('active');
-}
 
-Nav.prototype.createNavLinks = (language) => {
+  const pathname = location.pathname.split('/')[1];
+  const {linksArr, createId} = that.createNavLinks(that.props.language.selected);
+  
+  const activeLinkId = linksArr
+    .map(link=> link.id)
+    .filter(link => link === `${pathname.toLowerCase()}-nav-link`)[0];
+
+  activeLinkId ? $(`#${activeLinkId}`).addClass('active') : null;
+};
+
+Nav.prototype.createNavLinks = (lang) => {
   const linksArr = [
-    { href: `/${language}/`, label: 'Home'},
-    { href: `/${language}/about`, label: 'About'},
-    { href: `/${language}/services`, label: 'Services'},
-    { href: `/${language}/portfolio`, label: 'Portfolio'},
-    { href: `/${language}/contact`, label: 'Contact'}
+    {
+      page: 'index',
+      text: { en: 'Home', es: 'Inicio' }
+    },
+    {
+      page: 'about',
+      text: { en: 'About', es: 'Sobre' }
+    },
+    {
+      page: 'services',
+      text: { en: 'Services', es: 'Servicios' }
+    },
+    {
+      page: 'portfolio',
+      text: { en: 'Portfolio', es: 'Portafolio' }
+    },
+    {
+      page: 'contact',
+      text: { en: 'Contact', es: 'Contacto' }
+    }
   ];
 
-  const links = linksArr.map(link => {
-    link.key = `nav-link-${link.href}-${link.label}`;
-    link.id = `${link.label}-nav-link`
-    return link;
-  });
-  return links;
+  const createKey = (text) => {
+    return `nav-link-${text[lang].toLowerCase()}`;
+  }
+
+  const createId = (text, lang) => {
+    return `${text[lang].toLowerCase()}-nav-link`;
+  };
+
+  return {
+    linksArr: linksArr.map(link => {
+      link.key = createKey(link.text);
+      link.id = createId(link.text, lang);
+
+      return link;
+    })
+  };
 };
 
 const mapStateToProps = (state) => ({

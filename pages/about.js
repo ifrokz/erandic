@@ -5,9 +5,18 @@ import {selectLanguage} from './../redux/actions/language';
 import Nav from '../components/Navbar';
 
 class About extends React.Component {
-  static getInitialProps = async ({reduxStore, req}) => {
+  static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
+    const isServer = !!req;
     
-      return {}
+    const request = {
+      params: isServer ? req.params : undefined,
+      query: isServer ? req.query : undefined
+    }
+
+    // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
+
+    reduxStore.dispatch(selectLanguage(lang));
+    return {req: request, lang: lang}
   }
 
   render () {
@@ -25,4 +34,9 @@ class About extends React.Component {
   };
 };
 
-export default connect()(About);
+function mapStateToProps (state) {
+  const lang = state.language;
+  return {store: {language: lang}};
+};
+
+export default connect(mapStateToProps)(About);
