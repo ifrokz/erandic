@@ -29,27 +29,32 @@ const dev = process.env.NODE_ENV !== 'production'
 console.log('dev', dev);
 const app = next({ dev })
 const handle = app.getRequestHandler()
+const Router = require('./next-routes').Router;
 
 app.prepare().then(() => {
-  server.get(['/:language(es|en)/home/', '/:language(es|en)/inicio/', '/:language(es|en)/'], (req, res, next) => {
-    app.render(req, res, '/index', req.query);
-  });
+  // server.get(['/:language(es|en)/home/', '/:language(es|en)/inicio/', '/:language(es|en)/'], (req, res, next) => {
+  //   app.render(req, res, '/index', req.query);
+  // });
 
-  server.get('/:language(es|en)/about', (req, res, next) => {
-    app.render(req, res, '/about', req.query);
-  });
+  // server.get('/:language(es|en)/about', (req, res, next) => {
+  //   app.render(req, res, '/about', req.query);
+  // });
 
-  server.get('/:language(es|en)/services', (req, res, next) => {
-    app.render(req, res, '/services', req.query);
-  });
+  // server.get('/:language(es|en)/services', (req, res, next) => {
+  //   app.render(req, res, '/services', req.query);
+  // });
 
-  server.get('/:language(es|en)/contact', (req, res, next) => {
-    app.render(req, res, '/contact', req.query);
-  });
+  // server.get('/:language(es|en)/contact', (req, res, next) => {
+  //   app.render(req, res, '/contact', req.query);
+  // });
 
-  server.get('/:language(es|en)/portfolio', (req, res, next) => {
-    app.render(req, res, '/portfolio', req.query);
-  });
+  // server.get('/:language(es|en)/portfolio', (req, res, next) => {
+  //   app.render(req, res, '/portfolio', req.query);
+  // });
+
+  Router.forEachPattern((page, pattern, defaultParams)=> server.get(pattern, (req, res) =>
+    app.render(req, res, `/${page}`, Object.assign({}, defaultParams, req.query, req.params))
+  ));
 
   server.get('*', (req, res) => {
     handle(req, res);

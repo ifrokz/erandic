@@ -8,7 +8,6 @@ import {selectLanguage} from '../redux/actions/language';
 class Nav extends React.Component {
   constructor(props){
     super(props);
-    //props.selectLanguage('narniano');
   }
   
   componentDidMount = () => {
@@ -21,7 +20,7 @@ class Nav extends React.Component {
         <Link href={`/${this.props.language.selected}/?minPrice=100&maxPrice=250`}>
           <a className='navbar-brand'>
             <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
-            {`{Bootstrapñ}`}
+            {`{Bootstrapñá}`}
           </a>
         </Link>
         <button className='navbar-toggler' type='button' data-toggle='collapse' data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">

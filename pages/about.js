@@ -6,8 +6,8 @@ import Nav from '../components/Navbar';
 
 class About extends React.Component {
   static getInitialProps = async ({reduxStore, req}) => {
-    // reduxStore.dispatch(selectLanguage(req.params.language));
-    return { params: req.params , query: req.query}
+    
+      return {}
   }
 
   render () {
@@ -17,7 +17,9 @@ class About extends React.Component {
           <title>About</title>
         </Head>
         <Nav/>
-        About.js
+        <p onClick={() => {
+
+        }}>About.js</p>
       </div>
     );
   };
