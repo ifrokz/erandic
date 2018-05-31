@@ -57,7 +57,7 @@ Nav.prototype.images = {
 Nav.prototype.setActiveNavLink = (that) => {
 
   const pathname = location.pathname.split('/')[1];
-  const {linksArr, createId} = that.createNavLinks(that.props.language.selected);
+  const {linksArr} = that.createNavLinks(that.props.language.selected);
   
   const activeLinkId = linksArr
     .map(link=> link.id)
@@ -94,14 +94,14 @@ Nav.prototype.createNavLinks = (lang) => {
     return `nav-link-${text[lang].toLowerCase()}`;
   }
 
-  const createId = (text, lang) => {
+  const createId = (text) => {
     return `${text[lang].toLowerCase()}-nav-link`;
   };
 
   return {
     linksArr: linksArr.map(link => {
       link.key = createKey(link.text);
-      link.id = createId(link.text, lang);
+      link.id = createId(link.text);
 
       return link;
     })

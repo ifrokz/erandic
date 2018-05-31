@@ -30,7 +30,7 @@ class Index extends React.Component {
     const switchLang = lang === 'es' ? 'en' : 'es';
     return (
       <Link {...Router.linkPage('index', {lang: switchLang})}>
-        <a>{switchLang === 'es' ? 'Español' : 'English'}</a>
+         <a> {switchLang === 'es' ? `Change language:` : `Cambiar idioma:`} {switchLang === 'es' ? 'Español' : 'English'}</a>
       </Link>
     );
   }
