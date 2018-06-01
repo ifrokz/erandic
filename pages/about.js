@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 import {selectLanguage} from './../redux/actions/language';
 import Nav from '../components/Navbar';
+import Page from './common/page';
 
 class About extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
@@ -21,15 +22,14 @@ class About extends React.Component {
 
   render () {
     return (
-      <div>
+      <Page>
         <Head>
           <title>About</title>
         </Head>
-        <Nav/>
         <p onClick={() => {
 
         }}>About.js</p>
-      </div>
+      </Page>
     );
   };
 };

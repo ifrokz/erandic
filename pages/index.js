@@ -2,9 +2,9 @@ import {connect} from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link'
 
-import {selectLanguage} from './../redux/actions/language';
-import Nav from '../components/Navbar';
 import {Router} from '../server/next-routes';
+import {selectLanguage} from './../redux/actions/language';
+import Page from './common/page';
 
 class Index extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
@@ -38,11 +38,10 @@ class Index extends React.Component {
   render = () => {
     const {lang} = this.props;
     return (
-      <div>
+      <Page>
         <Head>
           <title>Home</title>
         </Head>
-        <Nav/>
         <div>
           <h1>{lang === 'es' ? 'Hola' : 'Hello'} Ivan</h1>
           <div>{this.renderSwitchLangageLink()}</div>
@@ -54,7 +53,7 @@ class Index extends React.Component {
           <p>{`Query => ${JSON.stringify(this.props.req.query)}`}</p>
           <p>{`Store=> ${JSON.stringify(this.props.store, null, 2)}`}</p>
         </div>
-      </div>
+      </Page>
     )
   };
 };

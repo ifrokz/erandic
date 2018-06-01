@@ -6,7 +6,7 @@ import $ from 'jquery';
 import {selectLanguage} from '../redux/actions/language';
 import {Router} from '../server/next-routes';
 
-class Nav extends React.Component {
+class Navbar extends React.Component {
   constructor(props){
     super(props);
   }
@@ -16,6 +16,7 @@ class Nav extends React.Component {
   }
 
   render = () => {
+    const x  =this.images.brandImage;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link {...Router.linkPage('index', {lang: this.props.language.selected})}>
@@ -46,15 +47,14 @@ class Nav extends React.Component {
   };
 };
 
-Nav.prototype.images = {
+Navbar.prototype.images = {
   brandImage: { 
     valueOf: () => '/static/favicon.ico',
-    getLink: this.valueOf,
     alt: 'brand-image'
   }
 };
 
-Nav.prototype.setActiveNavLink = (that) => {
+Navbar.prototype.setActiveNavLink = (that) => {
 
   const pathname = location.pathname.split('/')[1];
   const {linksArr} = that.createNavLinks(that.props.language.selected);
@@ -66,7 +66,7 @@ Nav.prototype.setActiveNavLink = (that) => {
   activeLinkId ? $(`#${activeLinkId}`).addClass('active') : null;
 };
 
-Nav.prototype.createNavLinks = (lang) => {
+Navbar.prototype.createNavLinks = (lang) => {
   const linksArr = [
     {
       page: 'index',
@@ -118,5 +118,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Nav);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
 

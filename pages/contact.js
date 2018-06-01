@@ -2,7 +2,7 @@ import {connect} from 'react-redux';
 import Head from 'next/head';
 
 import {selectLanguage} from './../redux/actions/language';
-import Nav from '../components/Navbar';
+import Page from './common/page';
 
 class Contact extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
@@ -21,13 +21,12 @@ class Contact extends React.Component {
 
   render () {
     return (
-      <div>
+      <Page>
         <Head>
           <title>Contact</title>
         </Head>
-        <Nav/>
         Contact.js
-      </div>
+      </Page>
     );
   };
 };
