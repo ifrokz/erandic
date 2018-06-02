@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import './styles/Navbar.scss';
 import {selectLanguage} from '../redux/actions/language';
 import {Router} from '../server/next-routes';
+import _t from './navbar/lang.json';
 
 class Navbar extends React.Component {
   constructor(props){
@@ -17,13 +18,14 @@ class Navbar extends React.Component {
   }
 
   render = () => {
-    console.log(this.props)
+    const code = this.props.language.selected.code;
+
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link {...Router.linkPage('index', {lang: this.props.language.selected.code})}>
           <a className='navbar-brand'>
             <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
-            {`{Title}`}
+            {`${_t.title[code]}`}
           </a>
         </Link>
         {` [Language: ${this.props.language.selected.code}]`}
@@ -36,7 +38,7 @@ class Navbar extends React.Component {
               this.createNavLinks(this.props.language.selected.code).linksArr.map(link => {
                 return (
                   <Link {...Router.linkPage(link.page, {lang: this.props.language.selected.code})} key={link.key}>
-                    <a className='nav-item nav-link' id={link.id}>{link.text[this.props.language.selected.code]}</a>
+                    <a className='nav-item nav-link' id={link.id}>{_t.pages[link.lang.code][code]}</a>
                   </Link>
                 );
               })
@@ -71,38 +73,38 @@ Navbar.prototype.createNavLinks = (lang) => {
   const linksArr = [
     {
       page: 'index',
-      text: { en: 'Home', es: 'Inicio' }
+      lang: {code: 'home'}
     },
     {
       page: 'about',
-      text: { en: 'About', es: 'Sobre' }
+      lang: {code: 'about'}
     },
     {
       page: 'services',
-      text: { en: 'Services', es: 'Servicios' }
+      lang: {code: 'services'}
     },
     {
       page: 'portfolio',
-      text: { en: 'Portfolio', es: 'Portafolio' }
+      lang: {code: 'portfolio'}
     },
     {
       page: 'contact',
-      text: { en: 'Contact', es: 'Contacto' }
+      lang: {code: 'contact'}
     }
   ];
 
   const createKey = (text) => {
-    return `nav-link-${text[lang].toLowerCase()}`;
+    return `nav-link-${text}`;
   }
 
   const createId = (text) => {
-    return `${text[lang].toLowerCase()}-nav-link`;
+    return `${text}-nav-link`;
   };
 
   return {
     linksArr: linksArr.map(link => {
-      link.key = createKey(link.text);
-      link.id = createId(link.text);
+      link.key = createKey(link.page);
+      link.id = createId(link.page);
 
       return link;
     })

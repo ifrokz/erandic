@@ -1,0 +1,29 @@
+{
+  "title": {
+    "es": "Título",
+    "en": "Title"
+  },
+  "pages": {
+    "home": {
+      "es": "Inicio",
+      "en": "Home"
+    },
+    "about": {
+      "es": "Sobre",
+      "en": "About"
+    },
+    "services": {
+      "es": "Servicios",
+      "en": "Services"
+    },
+    "portfolio": {
+      "es": "Portafolio",
+      "en": "Portfolio"
+    },
+    "contact": {
+      "es": "Contacto",
+      "en": "Contact"
+    }
+  }
+}
+
