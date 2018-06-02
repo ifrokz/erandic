@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
 import Head from 'next/head';
+import PropTypes from 'prop-types';
 
 import {selectLanguage} from './../redux/actions/language';
-import Page from './common/page';
+import Page from './common/Page';
 
 class Contact extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
@@ -11,13 +12,13 @@ class Contact extends React.Component {
     const request = {
       params: isServer ? req.params : undefined,
       query: isServer ? req.query : undefined
-    }
+    };
 
     // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
 
     reduxStore.dispatch(selectLanguage(lang));
-    return {req: request, lang: lang}
-  }
+    return {req: request, lang: lang};
+  };
 
   render () {
     return (
@@ -30,6 +31,12 @@ class Contact extends React.Component {
     );
   };
 };
+
+Contact.propTypes = {
+  store: PropTypes.object,
+  req: PropTypes.object,
+  lang: PropTypes.string
+}
 
 function mapStateToProps (state) {
   const lang = state.language;

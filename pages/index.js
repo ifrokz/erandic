@@ -1,25 +1,26 @@
 import {connect} from 'react-redux';
 import Head from 'next/head';
 import Link from 'next/link'
+import PropTypes from 'prop-types';
 
 import {Router} from '../server/next-routes';
 import {selectLanguage} from './../redux/actions/language';
-import Page from './common/page';
+import Page from './common/Page';
 
 class Index extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
     const isServer = !!req;
     
     const request = {
-      params: isServer ? req.params : undefined,
-      query: isServer ? req.query : undefined
-    }
+      params: isServer ? req.params : {},
+      query: isServer ? req.query : {}
+    };
 
     // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
 
     reduxStore.dispatch(selectLanguage(lang));
     return {req: request, lang: lang}
-  }
+  };
 
   isClientOrServer = () => {
     return (typeof window !== 'undefined' && window.document) ? 'client' : 'server';
@@ -33,7 +34,7 @@ class Index extends React.Component {
          <a> {switchLang === 'es' ? `Change language:` : `Cambiar idioma:`} {switchLang === 'es' ? 'Español' : 'English'}</a>
       </Link>
     );
-  }
+  };
 
   render = () => {
     const {lang} = this.props;
@@ -54,9 +55,15 @@ class Index extends React.Component {
           <p>{`Store=> ${JSON.stringify(this.props.store, null, 2)}`}</p>
         </div>
       </Page>
-    )
+    );
   };
 };
+
+Index.propTypes = {
+  store: PropTypes.object,
+  req: PropTypes.object,
+  lang: PropTypes.string
+}
 
 function mapStateToProps (state) {
   const lang = state.language;
