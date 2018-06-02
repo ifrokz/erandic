@@ -5,7 +5,7 @@ export const actionTypes = {
 export const selectLanguage = (language) => {
   return {
     type: actionTypes.SELECT,
-    language
+    code: language
   };
 };
 

@@ -19,7 +19,7 @@ class Index extends React.Component {
     // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
 
     reduxStore.dispatch(selectLanguage(lang));
-    return {req: request, lang: lang}
+    return {...request, lang: lang}
   };
 
   isClientOrServer = () => {
@@ -37,22 +37,23 @@ class Index extends React.Component {
   };
 
   render = () => {
-    const {lang} = this.props;
+    const {language} = this.props;
+    
     return (
       <Page>
         <Head>
           <title>Home</title>
         </Head>
         <div>
-          <h1>{lang === 'es' ? 'Hola' : 'Hello'} Ivan</h1>
+          <h1>{language === 'es' ? 'Hola' : 'Hello'} Ivan</h1>
           <div>{this.renderSwitchLangageLink()}</div>
         </div>
-        <h1>Hello world from Next JS {lang} {this.isClientOrServer()}</h1>
+        <h1>Hello world from Next JS {language.selected.code} {this.isClientOrServer()}</h1>
 
         <div>
-          <p>{`Params => ${JSON.stringify(this.props.req.params)}`}</p>
-          <p>{`Query => ${JSON.stringify(this.props.req.query)}`}</p>
-          <p>{`Store=> ${JSON.stringify(this.props.store, null, 2)}`}</p>
+          <p>{`Params => ${JSON.stringify(this.props.params)}`}</p>
+          <p>{`Query => ${JSON.stringify(this.props.query)}`}</p>
+          <p>{`Store.language => ${JSON.stringify(language, null, 2)}`} </p>
         </div>
       </Page>
     );
@@ -66,8 +67,11 @@ Index.propTypes = {
 }
 
 function mapStateToProps (state) {
-  const lang = state.language;
-  return {store: {language: lang}};
+  return {
+    language: {
+      ...state.language
+    }
+  };
 };
 
 export default connect(mapStateToProps)(Index);

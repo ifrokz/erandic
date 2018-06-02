@@ -7,10 +7,10 @@ const defaultState = {
 
 export const languageReducer = (state = defaultState, action) => {
   switch (action.type) {
-    case actionTypes.SELECT: 
+    case actionTypes.SELECT:
       return {
         ...state,
-        selected: action.language
+        selected: state.available.filter(lang => lang.code === action.code)[0]
       };
     default: 
       return state;

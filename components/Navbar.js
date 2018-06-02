@@ -19,23 +19,23 @@ class Navbar extends React.Component {
     const x  =this.images.brandImage;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link {...Router.linkPage('index', {lang: this.props.language.selected})}>
+        <Link {...Router.linkPage('index', {lang: this.props.language.selected.code})}>
           <a className='navbar-brand'>
             <img className='d-inline-block align-top' width='30' height='30' src={this.images.brandImage} alt={this.images.brandImage.alt}/>
             {`{Title}`}
           </a>
         </Link>
-        {` [Language: ${this.props.language.selected}]`}
+        {` [Language: ${this.props.language.selected.code}]`}
         <button className='navbar-toggler' type='button' data-toggle='collapse' data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse mr-auto justify-content-around" id="navbarNavAltMarkup">
           <div className="navbar-nav ">
             {
-              this.createNavLinks(this.props.language.selected).linksArr.map(link => {
+              this.createNavLinks(this.props.language.selected.code).linksArr.map(link => {
                 return (
-                  <Link {...Router.linkPage(link.page, {lang: this.props.language.selected})} key={link.key}>
-                    <a className='nav-item nav-link' id={link.id}>{link.text[this.props.language.selected]}</a>
+                  <Link {...Router.linkPage(link.page, {lang: this.props.language.selected.code})} key={link.key}>
+                    <a className='nav-item nav-link' id={link.id}>{link.text[this.props.language.selected.code]}</a>
                   </Link>
                 );
               })
@@ -57,7 +57,7 @@ Navbar.prototype.images = {
 Navbar.prototype.setActiveNavLink = (that) => {
 
   const pathname = location.pathname.split('/')[1];
-  const {linksArr} = that.createNavLinks(that.props.language.selected);
+  const {linksArr} = that.createNavLinks(that.props.language.selected.code);
   
   const activeLinkId = linksArr
     .map(link=> link.id)
@@ -108,9 +108,17 @@ Navbar.prototype.createNavLinks = (lang) => {
   };
 };
 
-const mapStateToProps = (state) => ({
-    language: state.language
-});
+// class Navbar extends React.Component {
+//   render () {
+//     return <div>Nav</div>
+//   }
+// }
+
+const mapStateToProps = (state) => {
+    return {
+      language: state.language
+    };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {

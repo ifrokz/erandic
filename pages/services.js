@@ -17,10 +17,12 @@ class Services extends React.Component {
     // const userAgent = req ? req.headers['user-agent'] : navigator.userAgent;
 
     reduxStore.dispatch(selectLanguage(lang));
-    return {req: request, lang: lang};
+    
+    return {...request, lang: lang};
   };
 
   render () {
+    console.log(this.props)
     return (
       <Page>
         <Head>
@@ -39,8 +41,7 @@ Services.propTypes = {
 }
 
 function mapStateToProps (state) {
-  const lang = state.language;
-  return {store: {language: lang}};
+  return {language: state.language.selected};
 };
 
 export default connect(mapStateToProps)(Services);

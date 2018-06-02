@@ -6,8 +6,11 @@ import {languageReducer} from './reducers/language';
 
 const exampleInitialState = {
   language: { 
-    selected: 'es',
-    available: ['en', 'es']
+    selected: {},
+    available: [
+      { name: 'English', code: 'en' },
+      { name: 'Español', code: 'es' }
+    ]
   }
 };
 
