@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import {selectLanguage} from './../redux/actions/language';
 import Nav from '../components/Navbar';
-import Page from './Page';
+import Page from './_page';
 
 class About extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 import {selectLanguage} from './../redux/actions/language';
-import Page from './Page';
+import Page from './_page';
 
 class Contact extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
