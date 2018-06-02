@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import {Router} from '../server/next-routes';
 import {selectLanguage} from './../redux/actions/language';
-import Page from './common/Page';
+import Page from './Page';
 
 class Index extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {

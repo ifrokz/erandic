@@ -3,7 +3,7 @@ import Head from 'next/head';
 import PropTypes from 'prop-types';
 
 import {selectLanguage} from './../redux/actions/language';
-import Page from './common/Page';
+import Page from './Page';
 
 class Portfolio extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
