@@ -1,8 +1,9 @@
 import {connect} from 'react-redux';
-
 import Link from 'next/link';
-import './styles/Navbar.scss';
 import $ from 'jquery';
+import PropTypes from 'prop-types';
+
+import './styles/Navbar.scss';
 import {selectLanguage} from '../redux/actions/language';
 import {Router} from '../server/next-routes';
 
@@ -16,7 +17,7 @@ class Navbar extends React.Component {
   }
 
   render = () => {
-    const x  =this.images.brandImage;
+    console.log(this.props)
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link {...Router.linkPage('index', {lang: this.props.language.selected.code})}>
@@ -108,11 +109,18 @@ Navbar.prototype.createNavLinks = (lang) => {
   };
 };
 
-// class Navbar extends React.Component {
-//   render () {
-//     return <div>Nav</div>
-//   }
-// }
+Navbar.propTypes = {
+  language: PropTypes.shape({
+    selected: PropTypes.shape({
+      code: PropTypes.string,
+      name: PropTypes.string
+    }),
+    available: PropTypes.arrayOf(PropTypes.shape({
+      code: PropTypes.string,
+      name: PropTypes.string
+    }))
+  })
+}
 
 const mapStateToProps = (state) => {
     return {

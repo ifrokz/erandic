@@ -38,7 +38,10 @@ class About extends React.Component {
 About.propTypes = {
   store: PropTypes.object,
   req: PropTypes.object,
-  lang: PropTypes.string
+  language: PropTypes.shape({
+    selected: PropTypes.string,
+    name: PropTypes.string
+  })
 }
 
 function mapStateToProps (state) {

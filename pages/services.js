@@ -37,7 +37,10 @@ class Services extends React.Component {
 Services.propTypes = {
   store: PropTypes.object,
   req: PropTypes.object,
-  lang: PropTypes.string
+  language: PropTypes.shape({
+    selected: PropTypes.string,
+    name: PropTypes.string
+  })
 }
 
 function mapStateToProps (state) {

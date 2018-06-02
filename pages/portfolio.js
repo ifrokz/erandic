@@ -35,7 +35,10 @@ class Portfolio extends React.Component {
 Portfolio.propTypes = {
   store: PropTypes.object,
   req: PropTypes.object,
-  lang: PropTypes.string
+  language: PropTypes.shape({
+    selected: PropTypes.string,
+    name: PropTypes.string
+  })
 }
 
 function mapStateToProps (state) {

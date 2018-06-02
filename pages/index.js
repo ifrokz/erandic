@@ -48,7 +48,7 @@ class Index extends React.Component {
           <h1>{language === 'es' ? 'Hola' : 'Hello'} Ivan</h1>
           <div>{this.renderSwitchLangageLink()}</div>
         </div>
-        <h1>Hello world from Next JS {language.selected.code} {this.isClientOrServer()}</h1>
+        <h1>Hello world from Next JS {language.code} {this.isClientOrServer()}</h1>
 
         <div>
           <p>{`Params => ${JSON.stringify(this.props.params)}`}</p>
@@ -63,15 +63,14 @@ class Index extends React.Component {
 Index.propTypes = {
   store: PropTypes.object,
   req: PropTypes.object,
-  lang: PropTypes.string
-}
+  language: PropTypes.shape({
+    selected: PropTypes.string,
+    name: PropTypes.string
+  })
+};
 
 function mapStateToProps (state) {
-  return {
-    language: {
-      ...state.language
-    }
-  };
+  return {language: state.language.selected};
 };
 
 export default connect(mapStateToProps)(Index);
