@@ -1,0 +1,1 @@
+ARREGLAR PAGINA ACTIVA EN NAVBAR (Se ha estropeado al cambiar el objeto de las traducciones/links)
