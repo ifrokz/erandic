@@ -1,32 +1,60 @@
 @import './../styles/base/_settings.scss';
 
-  form#footer__contactForm {
-    width: 50%;
-    float: right;
-  
-    @media screen and (max-width: $desktop-breakpoint) {
-      width: 100%;
-      display: inline-block;
-    }
 
-    > div, > button {
-      display: block;
-      width: 90%;
-    }
+form#footer__contactForm {
+  width: 100%;
 
-    > div {
-      > label{
-        font-size: $m-size;
-        color: white;
-    
-        @media screen and (max-width: $desktop-breakpoint) {
-          color: green;
-        }
-      }
-
-      textarea {
-        height: 15rem;
-      }
-    }
+  * {
+    font-size: $m-size;
   }
+
+  label {
+    color: white;
+  }
+
+  textarea {
+    resize: none;
+    height: 15rem;
+  }
+  button {
+    margin: 0 auto;
+    background-color: rgb(94, 165, 96);
+    border-color: #4CAF50;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
+  // form#footer__contactForm {
+  //   width: 100%;
+  //   margin: 0 auto;
+  
+  //   >input,>textarea{
+  //     width: 10%;
+  //   }
+  //   * {
+  //     font-size: $m-size;
+  //   }
+  //   @media screen and (max-width: $desktop-breakpoint) {
+  //     width: 100%;
+  //   }
+
+  //   > div, > button {
+  //     display: block;
+  //     width: 90%;
+  //   }
+
+  //   > div {
+  //     > label{
+  //       color: white;
+    
+  //       @media screen and (max-width: $desktop-breakpoint) {
+  //         color: green;
+  //       }
+  //     }
+
+  //     textarea {
+  //       height: 15rem;
+  //     }
+  //   }
+  // }
  

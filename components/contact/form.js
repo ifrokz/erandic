@@ -34,34 +34,40 @@ class Form extends React.Component {
       <div>
         <h4>Contacto:</h4>
         <form onSubmit={this.onSubmit} id='footer__contactForm'>
-          <div className='form-group'>
-            <label htmlFor='inputEmail'>Email address</label>
-            <input
-              type='text'
-              className="form-control"
-              placeholder={'placeholder'}
-              id='inputEmail'
-              autoFocus
-            />
+          <div className='form-group row'>
+            <label className='col-sm-2 col-form-label' htmlFor='inputEmail'>Email address</label>
+            <div className='col-sm-8'>
+              <input
+                type='text'
+                className="form-control"
+                placeholder={'placeholder'}
+                id='inputEmail'
+                autoFocus
+              />
+            </div>
           </div>
-          <div className='form-group'>
-            <label htmlFor='inputEmailTitle'>Title</label>
-            <input
-              type='textarea'
-              className="form-control"
-              placeholder={'placeholder'}
-              id='inputEmailTitle'
-            />
+          <div className='form-group row'>
+            <label className='col-sm-2 col-form-label' htmlFor='inputEmail'>Title</label>
+            <div className='col-sm-8'>
+              <input
+                type='text'
+                className="form-control"
+                placeholder={'placeholder'}
+                id='inputEmailTitle'
+              />
+            </div>
           </div>
-          <div className='form-group'>
-            <label htmlFor='inputEmailContent'>Message content</label>
-            <textarea
-              className='form-control'
-              placeholder={'placeholder'}
-              id='inputEmailContent'
-            />
+          <div className='form-group row'>
+            <label className='col-sm-2 col-form-label' htmlFor='inputEmail'>Email address</label>
+            <div className='col-sm-8'>
+              <textarea
+                className="form-control"
+                placeholder={'placeholder'}
+                id='inputEmailContent'
+              />
+            </div>
           </div>
-          <button type='submit' className="btn btn-primary">Submit</button>
+          <button type='submit' className="col-sm-8 btn btn-primary btn-block">Submit</button>
         </form>
       </div>
     );
