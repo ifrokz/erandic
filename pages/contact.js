@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import {selectLanguage} from './../redux/actions/language';
 import Page from './_page';
 
-import ContactForm from './contact/form';
-
 class Contact extends React.Component {
   static getInitialProps = async ({reduxStore, req, query: {lang}}) => {
     const isServer = !!req;
@@ -29,7 +27,6 @@ class Contact extends React.Component {
           <title>Contact</title>
         </Head>
         Contact.js
-        <ContactForm/>
       </Page>
     );
   };

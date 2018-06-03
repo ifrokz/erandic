@@ -1,5 +1,4 @@
 import Document, { Head, Main, NextScript } from 'next/document';
-import Navbar from '../components/Navbar';
 import MyHead from '../components/head';
 
 export default class MyDocument extends Document {

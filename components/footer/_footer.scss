@@ -1,0 +1,18 @@
+@import './../styles/base/_settings.scss';
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50rem; /* Set the fixed height of the footer here */
+  line-height: 5rem; /* Vertically center the text there */
+  text-align: center;
+}
+
+.footer, .footer > form {
+  background-color: $dark-blue;
+}
+
+
+
+

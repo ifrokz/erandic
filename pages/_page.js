@@ -1,5 +1,5 @@
-import Navbar from '../components/Navbar';
-import Footer from '../components/footer';
+import Navbar from '../components/navbar/navbar.js';
+import Footer from '../components/footer/footer';
 import PropTypes from 'prop-types';
 
 const Page = (props) => {

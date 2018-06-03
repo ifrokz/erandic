@@ -3,10 +3,10 @@ import Link from 'next/link';
 import $ from 'jquery';
 import PropTypes from 'prop-types';
 
-import './styles/Navbar.scss';
-import {selectLanguage} from '../redux/actions/language';
-import {Router} from '../server/next-routes';
-import _t from './navbar/lang.json';
+import './_navbar.scss';
+import {selectLanguage} from '../../redux/actions/language';
+import {Router} from '../../server/next-routes';
+import _t from './lang.json';
 
 class Navbar extends React.Component {
   constructor(props){
