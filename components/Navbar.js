@@ -38,7 +38,7 @@ class Navbar extends React.Component {
               this.createNavLinks(this.props.language.selected.code).linksArr.map(link => {
                 return (
                   <Link {...Router.linkPage(link.page, {lang: this.props.language.selected.code})} key={link.key}>
-                    <a className='nav-item nav-link' id={link.id}>{_t.pages[link.lang.code][code]}</a>
+                    <a className='nav-item nav-link' id={link.id}>{_t.pages[link.lang.code].text[code]}</a>
                   </Link>
                 );
               })
@@ -66,10 +66,11 @@ Navbar.prototype.setActiveNavLink = (that) => {
     .map(link=> link.id)
     .filter(link => link === `${pathname.toLowerCase()}-nav-link`)[0];
 
-  activeLinkId ? $(`#${activeLinkId}`).addClass('active') : null;
+  activeLinkId ? $(`#${activeLinkId}`).addClass('active') : 
+  !pathname ? $(`#${_t.pages.home.path.en}-nav-link`).addClass('active') : null;
 };
 
-Navbar.prototype.createNavLinks = (lang) => {
+Navbar.prototype.createNavLinks = (lang, active) => {
   const linksArr = [
     {
       page: 'index',
@@ -93,19 +94,11 @@ Navbar.prototype.createNavLinks = (lang) => {
     }
   ];
 
-  const createKey = (text) => {
-    return `nav-link-${text}`;
-  }
-
-  const createId = (text) => {
-    return `${text}-nav-link`;
-  };
-
   return {
     linksArr: linksArr.map(link => {
-      link.key = createKey(link.page);
-      link.id = createId(link.page);
-
+      link.key = `nav-link-${link.page}`
+      link.id = `${_t.pages[link.lang.code].path[lang]}-nav-link`;
+      console.log()
       return link;
     })
   };

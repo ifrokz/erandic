@@ -5,24 +5,46 @@
   },
   "pages": {
     "home": {
-      "es": "Inicio",
-      "en": "Home"
+      "path": {
+        "en": "home",
+        "es": "inicio"
+      },
+      "text": {"es": "Inicio",
+      "en": "Home"}
     },
-    "about": {
-      "es": "Sobre",
-      "en": "About"
+    "about": {      
+      "path": {
+        "en": "about",
+        "es": "sobre"
+      },
+      "text": {
+        "es": "Sobre",
+        "en": "About"
+      }
     },
     "services": {
-      "es": "Servicios",
-      "en": "Services"
+      "path": {
+        "en": "services",
+        "es": "servicios"
+      },
+      "text": {"es": "Servicios",
+      "en": "Services"}
     },
     "portfolio": {
-      "es": "Portafolio",
-      "en": "Portfolio"
+      "path": {
+        "en": "portfolio",
+        "es": "portafolio"
+      },
+      "text": { "es": "Portafolio",
+      "en": "Portfolio"}
     },
     "contact": {
-      "es": "Contacto",
-      "en": "Contact"
+      "path": {
+        "en": "contact",
+        "es": "contacto"
+      },
+      "text": {"es": "Contacto",
+      "en": "Contact"}
     }
   }
 }
