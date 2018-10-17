@@ -14,9 +14,9 @@
     "next_dev": "next",
     "next_build": "next build",
     "next_start": "next start",
-    "start": "export NODE_ENV=production || SET \"NODE_ENV=production\" && node server/server.js",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha server/tests/**/*.test.js",
-    "test_cloud": "export NODE_ENV=test_cloud || SET \"NODE_ENV=test_cloud\" && mocha server/tests/**/*.test.js",
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "test": "cross-env NODE_ENV=test mocha server/tests/**/*.test.js",
+    "test_cloud": "cross-env NODE_ENV=test_cloud mocha server/tests/**/*.test.js",
     "test-watch": "nodemon --exec \"npm test\"",
     "heroku-postbuild": "next build"
   },
@@ -47,6 +47,7 @@
     "validator": "^10.2.0"
   },
   "devDependencies": {
+    "cross-env": "^5.2.0",
     "expect": "^23.0.0",
     "mocha": "^5.2.0",
     "nodemon": "^1.17.5",

@@ -11,7 +11,7 @@ const personalData = [
   },
   {
     "first": "Pablo",
-    "second": "Tolosa Cerezo"
+    "second": "Alberto Apellido"
   }
 ];
 
